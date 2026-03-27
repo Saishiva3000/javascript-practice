@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <style>
+        body{
+            background-color: #212121;
+            color: aliceblue;
+        }
+        h1{
+            text-align: center;
+            font-size: 3em;
+            background-color: black;
+            color: aliceblue;
+        }
+        p{
+            margin-top: 100px;
+            text-align: center;
+            font-size: 3em;
+        }
+        label{
+             margin-left: 40%;
+            /* text-align: center; */
+            font-size: 2em;
+        }
+        input{
+            margin-top: 50px;
+            margin-left: 40%;
+            height: 50px;
+            font-size: x-large;
+        }
+        button{
+            margin-top: 40px;
+            margin-left: 40%;
+            padding: 0 20px 0 20px;
+            height: 40px;
+            font-weight: bolder;
+            color: aliceblue;
+            background-color: black;
+            font-size: x-large;
+        }
+        #start{
+            margin-top: 40px;
+            margin-left: 45%;
+            padding: 0 20px 0 20px;
+            height: 40px;
+            font-weight: bolder;
+            color: aliceblue;
+            background-color: black;
+        }
+        div{
+            font-size: xx-large;
+            display: inline-block;
+            margin-top: 50px;
+            margin-left: 25%;
+            color: rgb(1, 18, 34);
+            background-color: rgb(239, 231, 231);
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Guessing Game </h1>
+    <button id="start"></button>
+    <p>Try to guess the Num</p>
+    <label for="number">Guess the Number</label><br>
+    <input id="num" type = "number" placeholder="give number from 1- 100" required><br>
+    <button id="submit">submit guess</button><br>
+    <div id="result"></div>
+    <script>
+        let isStart = true;
+        let start = document.querySelector("#start");
+        start.textContent = "start"
+        let random;
+        let count;
+        let won = false;
+        let result = document.querySelector("#result")
+        let btn = document.querySelector("#submit")
+        let num = document.querySelector("#num");
+        btn.addEventListener('click' , ()=>{
+            if(isStart){
+                result.textContent = "please start the game";
+            }
+            if(!won && count<10){
+                if(num.value == random){
+                result.textContent= `YOU WON on your ${count} try`;
+                won=true;
+                }
+                else{
+                    if(count === 10){
+                        result.textContent=`better luck next time`;
+                    }
+                    else{
+                        count++;
+                        result.textContent=`Wrong guess u still have ${10 - count} Guesses`
+                    }
+                }
+            }
+            else if(won){
+                result.textContent = " you won please restart to play again"
+            }
+            else if(count>10){
+                result.textContent = " you lost the previous game , restart the game to play again"
+            }
+        })
+        start.addEventListener('click' , ()=> {
+            count=0;
+            // random = Math.floor(Math.random()*10+1);
+            random =5;
+            isStart=false;
+            start.textContent = isStart?"start":"Restart";
+            won=false;
+            result.textContent="";
+        })
+    </script>
+</body>
+</html>

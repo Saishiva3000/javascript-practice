@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back Ground Color Changer</title>
+    <style>
+        h1{
+            text-align: center;
+            font-weight: bolder;
+            font-size: 3em;
+            color: coral;
+        }
+        #flex{
+            display: flex;
+            padding-top: 100px;
+            padding-left: 170px;
+            margin: 0;
+            padding: auto;
+
+            
+        }
+        .grey{
+            width: 150px;
+            height:150px;
+            /* padding-right:100px; */
+            margin-right: 50px;
+            background-color: grey;
+        }
+         .yellow{
+            width: 150px;
+            height:150px;
+            /* padding-right:100px; */
+            margin-right: 50px;
+            background-color: yellow;
+        }
+        .blue{
+            width: 150px;
+            height:150px;
+            /* padding-right:100px; */
+            margin-right: 50px;
+            background-color: blue;
+        }
+         .green{
+            width: 150px;
+            height:150px;
+            /* padding-right:100px; */
+            margin-right: 50px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Color Changer</h1>
+    <div id="flex">
+        <button class="grey"></button>
+        <button class="yellow"></button>
+        <button class="blue"></button>
+        <button class="green"></button>
+    </div>
+    <script>
+        let body = document.getElementsByTagName("body")
+        let grey = document.querySelector(".grey")
+        grey.addEventListener("click" , ()=>{
+            body[0].style.backgroundColor="#212121";
+        })
+        let yellow = document.querySelector(".yellow")
+        yellow.addEventListener("click" , ()=>{
+            document.body.style.backgroundColor="yellow"
+        })
+        let blue = document.querySelector(".blue")
+        blue.addEventListener("click" , ()=>{
+            document.body.style.backgroundColor="blue"
+        })
+        let green = document.querySelector(".green")
+        green.addEventListener("click" , ()=>{
+            document.body.style.backgroundColor="green"
+        })
+    </script>
+</body>
+</html>

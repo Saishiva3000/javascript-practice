@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        h1{
+            text-align: center;
+            font-size: 3em;
+        }
+        label{
+            font-size: 2em;
+        }
+        input{
+            height: 2em;
+            background-color: rgb(233, 172, 172);
+        }
+        span{
+            font-size: 2em;
+        }
+        #submit{
+            margin-top: 20px;
+            height: 40px;
+            width: 120px;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+    <label for="weight">weight :</label>
+    <input id="weight" type="number" id="weight" placeholder="in kg" required><br><br>
+    <label for="height">height :</label>
+    <input id="height" type="number" id="height" required placeholder="in m"><br>
+    <button id="submit">submit</button><br>
+    <span id="ans"></span>
+    <script>
+        let btn = document.querySelector("#submit")
+        let ans = document.querySelector("#ans")
+        let weight=document.querySelector("#weight");
+        let height=document.querySelector("#height");
+        btn.addEventListener('click' , ()=>{
+            let a = weight.value/(height.value * height.value) ;
+            ans.textContent = `ans : ${a}`;
+        })
+    </script>
+</body>
+</html>
