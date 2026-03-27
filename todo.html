@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>todo list</title>
+        <style>
+            h1{
+                text-decoration-line:underline;
+                text-decoration-color:red  ;
+                text-decoration-style:wavy ;
+                color: aliceblue;
+                text-align: center;
+            }
+            #textbox{
+                width:20em;
+                height: 4em;
+                border: 2px solid red;
+            }
+            #flex{
+                display:flex
+            }
+            #bro{
+                color: aliceblue;
+            }
+        </style>
+    </head>
+    <body style="background-color: #212121;">
+        <h1>to do list</h1>
+        <script>
+            let ul = document.createElement("ul")
+            document.body.appendChild(ul)
+            ul.id="bro"
+
+            let div = document.createElement("div");
+            div.id = "flex"
+            // let h1 = document.createElement("h1");
+            // h1.textContent = mg ;
+            // document.div.appendChild(h1);
+            let textbox = document.createElement("input");
+            textbox.id = "textbox"
+            textbox.setAttribute("type" , "text")
+            textbox.setAttribute("placeholder","todo things")
+            div.appendChild(textbox)
+
+            let button = document.createElement("button");
+            button.id = "btn";
+            button.textContent = "add"
+            button.addEventListener("click" , () =>{
+                let li = document.createElement("li")
+                li.textContent =`${textbox.value}`
+                ul.appendChild(li);
+                document.body.appendChild(ul)
+            })
+            div.appendChild(button);
+
+            document.body.appendChild(div)
+                
+        </script>
+    </body>
+</html>
