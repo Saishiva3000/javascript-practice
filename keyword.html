@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Word speccifications</title>
+    <style>
+        body{
+            background-color: #212121;
+        }
+        #par{
+            width: 50%;
+            margin: 0 auto;
+             /* text-align: center; */
+            color: aliceblue;
+            font-size: x-large;
+        }
+        *{
+            outline: 2px solid red;
+        }
+        #query{
+            padding: 10px 30px;
+             width: 50%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="par">
+        <div id="query">enter a key</div>
+    </div>
+    <script>
+        const insert = document.querySelector("#query");
+
+        window.addEventListener('keydown' , (e)=>{
+            insert.innerHTML = `
+                <table>
+                <tr>
+                    <th>key</th>
+                    <th>keycode</th>
+                    <th>key digit</th>
+                </tr>
+                <tr>    
+                    <td>${e.key}</td>
+                    <td>${e.keyCode}</td>
+                     <td> ${e.code}</td>
+                </tr>
+                 
+                </table>
+                `
+        })
+    </script>
+</body>
+</html>

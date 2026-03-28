@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cgpa Calculator</title>
+    <style>
+        div{
+            
+            margin: 0px 0 0 20px;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #212121;
+            color: aliceblue;
+        }
+        header{
+            margin: 0 0 30px 0;
+            padding: 10px 0 10px 0;
+            text-align: center;
+            background-color: black;
+            font-size: larger;
+            font-family:cursive;
+        }
+        select{
+            font-weight: bolder;
+            font-style: italic;
+            font-size: large;
+            width: 4em;
+            height: 2em;
+        }
+        option{
+            font-style: italic;
+            font-weight: 1000;
+        }
+        .container{
+            width:1000px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+        #subjects{
+            margin: auto;
+            width:1000px;
+            border: 2px solid white;
+        }
+        tr{
+            font-size: xx-large;
+            width:auto;
+            margin:auto;
+        }
+        tr:hover{
+            background-color: #2a2a2a;
+        }
+        th{
+            background: #333;
+        }
+        th , td{
+            text-align: center;
+            align-items: center;
+            width:250px;
+            padding: 10px;
+        }
+        .sub-add{
+            border-collapse: collapse;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 20px;
+            border: 2px solid wheat;
+            margin: auto;
+            width: 1100px;
+        }
+        label{
+            padding: 0 10px;
+            font-size: xx-large;
+        }
+        input{
+            width: 200px;
+            font-size: larger;
+            font-weight: bold;
+            height: 2em;
+            color: aliceblue;
+            background-color: #212121;
+            border: 2px solid white;
+        }
+        input:hover{
+            background-color: black;
+        }
+        #add{
+            font-weight: bold;
+            
+            font-size: larger;
+            width: 200px;
+            height: 2em;
+            background-color: aquamarine;
+            padding: 0 20px 0 20px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        #add:hover{
+            background-color: green;
+            border-color: chartreuse;
+        }
+        .delete{
+            font-weight: bold;   
+            font-size: larger;
+            width: 200px;
+            height: 1.5em;
+            margin: 0 0 0 50px;
+            background-color: rgb(238, 73, 71);
+            padding: 0 20px 0 20px;
+            border-radius: 6px;
+        }
+        .delete:hover{
+            background-color: #f70404;
+        }
+        .result{
+            display: flex;
+            justify-content: space-evenly;
+            outline: 2px solid wheat;
+            margin: 40px auto 0 auto;
+            width: 500px;
+            align-items:end;
+            align-items: center;
+            border-radius: 30px;
+        }
+        #give{
+            background-color: rgb(222, 222, 75);
+            font-weight: bold;
+            font-size: larger;
+            height: 2em;
+            border-radius: 1em;
+            width: 300px;
+            margin:20px 30px 20px 0;
+        }
+        #give:hover{
+            cursor: pointer;
+            background-color: rgb(255, 200, 0);
+            border-style: groove;
+        }
+        #result{
+            color: gold;
+            font-size: xx-large;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cgpa Calculator</h1>
+    </header>
+    <main>
+         <div class="container">
+            <table id="subjects" border="5px">
+             <tr>
+                <th>Subject</th>
+                <th>Grade</th>
+                <th>Credit</th>
+                <th>actions</th>
+             </tr>
+         </table>
+         </div>
+         <div class="sub-add">
+            <label for="sub-name">Subject Name :</label>
+            <input id="sub-name" type="text" placeholder="sub name" required>
+            <label for="credit">credit :</label>
+            <input id="credit" type="number" min="1" max="4" required placeholder="credit">
+            <button id="add">Add Subject</button>
+        </div>
+        <div class="result">
+            <button id="give">Result</button>
+            <span id="result"></span>
+        </div>
+    </main>
+   
+    <script>
+        const gradeMaps ={
+            O:10,
+            A:9,
+            B:8,
+            C:7,
+            F:0
+        }
+        
+        const calculateCGPA = function(){   
+            let result =0; 
+            let totalCredits =0;
+            let rows = document.querySelectorAll("#subjects tr")
+            rows.forEach((row ,index)=>{
+                if(index === 0) return ;
+                result+= gradeMaps[row.children[1].children[0].value] * parseInt(row.children[2].textContent);
+                totalCredits+=parseInt(row.children[2].textContent);
+            })    
+            
+            document.querySelector("#result").textContent=`Result : ${(result/totalCredits).toFixed(2)}`;
+        }
+        document.querySelector('#give').addEventListener('click', calculateCGPA)
+
+        document.querySelector('#add').addEventListener('click',()=>{
+            let tr = document.createElement("tr");
+            const subName = document.querySelector("#sub-name")
+            const cred = parseInt(document.querySelector("#credit").value);
+            console.log(subName.value)
+            let subject = document.createElement("td")
+            subject.textContent=`${subName.value}`
+ 
+            
+            let grade = document.createElement("td")
+            let select = document.createElement("select");
+            const arr = ["O","A","B","C","F"];
+            arr.forEach((i)=>{
+                let option = document.createElement("option")
+                option.textContent= `${i}`;
+                select.appendChild(option);
+            })
+
+            select.addEventListener('change',calculateCGPA);
+            grade.appendChild(select)
+
+               
+            let credit = document.createElement("td")
+            credit.textContent = `${cred}`
+
+            let actions = document.createElement("td");
+            let del = document.createElement("button");
+            del.classList.add("delete");
+            console.log(del)
+            del.textContent = "delete"
+            del.addEventListener('click' , ()=>{
+               const row = del.closest('tr')
+               console.log(Array.from(row.parentNode.children))
+               const index = (Array.from(row.parentNode.children)).indexOf(row)-1
+               row.remove();
+               calculateCGPA();
+               
+            })
+            actions.appendChild(del);
+
+            tr.appendChild(subject);
+            tr.appendChild(grade);
+            tr.appendChild(credit);
+            tr.appendChild(actions);
+            document.querySelector("#subjects").appendChild(tr)
+            calculateCGPA();
+        })
+        
+    </script>
+</body>
+
+</html>

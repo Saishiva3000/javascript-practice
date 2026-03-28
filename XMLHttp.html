@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API request</title>
+    <style>
+        *{
+            outline: 2px solid red;
+        }
+        body{
+            background-color: #212121;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <h1> Sub Count</h1>
+    <div id="card">
+        <div id="sub">
+            
+        </div>
+    </div>
+    <script>
+        let card = document.querySelector("#card");
+        let sub = document.querySelector("#sub");
+        const requestURL = 'https://api.github.com/users/hiteshchoudhary';
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET',requestURL);
+         xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                console.log(this.responseText);
+                const data = JSON.parse(this.responseText);
+                let img = document.createElement("img");
+                img.setAttribute("src" , data.avatar_url);
+                card.appendChild(img);
+                sub.textContent = ` sub Count : ${data.followers}`
+            }
+        }
+        xhr.send();
+       
+    </script>
+</body>
+</html>
